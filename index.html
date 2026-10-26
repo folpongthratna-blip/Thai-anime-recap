@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThaiRecap AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1020;color:#f5f5ff;font-family:Arial,sans-serif}
+main{max-width:700px;margin:auto;padding:24px 18px}
+header{font-size:22px;font-weight:bold;padding:12px 0;color:#a99bff}
+.tag{color:#69e5d1;font-size:12px;letter-spacing:2px;margin-top:40px}
+h1{font-size:38px;line-height:1.25;margin:14px 0}
+p{color:#a8b0c9;line-height:1.7}
+.card{margin-top:28px;padding:20px;background:#151d32;border:1px solid #303a56;border-radius:18px}
+label{display:block;margin:14px 0 8px;font-size:14px}
+input,select,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid #3b4665;background:#0b1224;color:white;font-size:15px}
+button{width:100%;padding:15px;margin-top:18px;border:0;border-radius:10px;background:linear-gradient(100deg,#a99bff,#60e2d0);font-size:16px;font-weight:bold;color:#101426}
+button:disabled{opacity:.6}
+.small{font-size:12px;color:#929db8}
+#result{display:none;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;background:#0b1224;padding:14px;border-radius:10px;margin-top:16px}
+.feature{margin-top:12px;padding:14px;background:#151d32;border-radius:12px;color:#c8cfe4}
+</style>
+</head>
+<body>
+<main>
+<header>✦ ThaiRecap AI</header>
+<div class="tag">AI MOVIE & ANIME RECAP</div>
+<h1>เปลี่ยนเรื่องราว<br>ให้เป็นคลิปสปอย</h1>
+<p>ใส่ลิงก์วิดีโอ เพื่อเตรียมสร้างบทสปอยภาษาไทยสำหรับ TikTok พร้อมเสียงพากย์และซับไตเติ้ล</p>
+
+<section class="card">
+<label for="url">🔗 ลิงก์ YouTube</label>
+<input id="url" type="url" placeholder="วางลิงก์ YouTube ที่นี่">
+
+<label for="duration">ความยาวคลิปที่ต้องการ</label>
+<select id="duration">
+<option value="1">1 นาที</option>
+<option value="2" selected>2 นาที</option>
+<option value="3">3 นาที</option>
+</select>
+
+<label for="style">สไตล์การเล่า</label>
+<select id="style">
+<option>เล่าเข้มข้น ชวนติดตาม</option>
+<option>เล่าเข้าใจง่าย กระชับ</option>
+<option>เล่าแบบลึกลับ น่าตื่นเต้น</option>
+</select>
+
+<button id="go" onclick="makeRecap()">สร้างบทสปอย AI</button>
+<p class="small">เวอร์ชัน 1.0 · เว็บทดลอง</p>
+<div id="result"></div>
+</section>
+
+<div class="feature">🎬 วิเคราะห์เนื้อเรื่องและเรียบเรียงบทสปอย</div>
+<div class="feature">🎙️ เตรียมต่อระบบเสียงพากย์ AI ภาษาไทย</div>
+<div class="feature">💬 เตรียมต่อระบบซับไตเติ้ลและส่งออกวิดีโอ</div>
+<p class="small">หมายเหตุ: เวอร์ชันนี้เป็นหน้าเว็บต้นแบบ ยังไม่ได้เชื่อม AI วิเคราะห์ลิงก์หรือสร้างวิดีโอจริง</p>
+</main>
+
+<script>
+function makeRecap(){
+ const url=document.getElementById('url').value.trim();
+ const result=document.getElementById('result');
+ if(!url){
+  alert('กรุณาใส่ลิงก์ YouTube ก่อนครับ');
+  return;
+ }
+ if(!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//i.test(url)){
+  alert('กรุณาใส่ลิงก์ YouTube ที่ถูกต้อง');
+  return;
+ }
+ result.style.display='block';
+ result.textContent=
+ 'รับลิงก์แล้ว!\\n\\n'+
+ 'ลิงก์: '+url+'\\n\\n'+
+ 'ความยาวเป้าหมาย: '+document.getElementById('duration').value+' นาที\\n'+
+ 'สไตล์: '+document.getElementById('style').value+'\\n\\n'+
+ 'สถานะ: หน้าเว็บพร้อมรับข้อมูลแล้ว แต่ยังต้องเชื่อมต่อ AI เพื่อวิเคราะห์เนื้อหาและสร้างบทสปอยจริง';
+}
+</script>
+</body>
+</html>
